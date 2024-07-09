@@ -1,0 +1,1 @@
+uvicorn app:app --port 3333 --workers 3
