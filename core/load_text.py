@@ -1,6 +1,5 @@
 import csv
 
-
 def load_texts_from_csv():
     texts = []
     with open("text_image_mapping.csv", mode="r") as file:

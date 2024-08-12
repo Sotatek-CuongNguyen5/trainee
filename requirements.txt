@@ -3,3 +3,6 @@ uvicorn
 pillow
 requests
 pytest
+pyjwt
+python-dotenv
+python-multipart

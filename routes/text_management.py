@@ -1,14 +1,10 @@
-from fastapi import APIRouter, HTTPException
-from typing import List
+from fastapi import APIRouter, HTTPException, Depends
 from core.load_text import load_texts_from_csv
+from utils.auth import verify_jwt
 
 router = APIRouter()
 
-# In-memory storage for texts
-texts = []
-
-
-@router.get("/texts/")
+@router.get("/texts/", dependencies=[Depends(verify_jwt)])
 async def get_texts():
     try:
         texts = load_texts_from_csv()
@@ -16,8 +12,7 @@ async def get_texts():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
-@router.get("/text_exists/")
+@router.get("/text_exists/", dependencies=[Depends(verify_jwt)])
 async def text_exists(text: str):
     try:
         texts = load_texts_from_csv()
